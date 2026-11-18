@@ -1,0 +1,838 @@
+{
+ "_README": [
+  "Started by init.py from ps.a78.",
+  "",
+  "Every human judgement about this ROM lives in this file; the",
+  "generated listings are disposable, so renaming is free.",
+  "",
+  "What to do next, roughly in order:",
+  "",
+  "  1. python tools/disasm.py \"ps.a78\" -c annotations.json",
+  "     Read the coverage it reports. Low coverage is normal at",
+  "     first and is the number you are trying to move.",
+  "",
+  "  2. Every unresolved indirect jump it reports is a hole. Add the",
+  "     target to `entries`, or the pointer pair to `ram_vectors` if",
+  "     the handler is installed into RAM.",
+  "",
+  "  3. python tools/audiotrace.py \"ps.a78\" -c annotations.json",
+  "     Finds the sound code and the tables feeding it.",
+  "",
+  "  4. Name things in `labels` as soon as you know what they are.",
+  "",
+  "See docs/method.md for the working order and docs/pitfalls.md for",
+  "the traps that each cost real time."
+ ],
+ "entries": [
+  "f7:FEEC",
+  "f7:FD99",
+  "f7:C002",
+  "f7:FE02",
+  "b3:926D",
+  "f7:C2D2",
+  "f7:C2E8",
+  "f7:C328",
+  "f7:C32F",
+  "f7:C5FF",
+  "f7:C6A6",
+  "f7:C6E7",
+  "f7:C723",
+  "f7:C741",
+  "f7:C7AD",
+  "f7:C7FA",
+  "f7:C828",
+  "f7:C842",
+  "f7:C880",
+  "f7:C8C4",
+  "f7:C8E0",
+  "f7:C95F",
+  "f7:C99F",
+  "f7:C9C6",
+  "f7:C9EF",
+  "f7:CA03",
+  "f7:CE23",
+  "f7:CE9F",
+  "f7:D0F3",
+  "f7:D10D",
+  "f7:D46A",
+  "f7:D484",
+  "f7:D4F6",
+  "f7:D54A",
+  "f7:D56C",
+  "f7:D58A",
+  "f7:D61E",
+  "f7:D79A",
+  "f7:D7AC",
+  "f7:D7F2",
+  "f7:D97C",
+  "f7:D996",
+  "f7:D9B3",
+  "f7:D9DB",
+  "f7:DA20",
+  "f7:DA2D",
+  "f7:DE5D",
+  "f7:DEA8",
+  "f7:DEC0",
+  "f7:DEE3",
+  "f7:DEEE",
+  "f7:DEFE",
+  "f7:DF0A",
+  "f7:DF1C",
+  "f7:DF2E",
+  "f7:DF4D",
+  "f7:DF5F",
+  "f7:DFA5",
+  "f7:E121",
+  "f7:E204",
+  "f7:F4FF",
+  "f7:F525",
+  "f7:F6E7",
+  "f7:F705",
+  "b3:9298",
+  "b3:92BB",
+  "f7:C332",
+  "f7:C363",
+  "f7:C3BC",
+  "f7:C470",
+  "f7:C527",
+  "f7:C5AE",
+  "f7:CC5C",
+  "f7:CEAB",
+  "f7:D1CE",
+  "f7:D04F",
+  "f7:DF86",
+  "f7:D3A6",
+  "f7:E0B7",
+  "f7:E14E",
+  "f7:C744",
+  "f7:E207",
+  "f7:E2E3",
+  "f7:E3B3",
+  "f7:E483",
+  "f7:E559",
+  "f7:E647",
+  "f7:D7B6",
+  "f7:D816",
+  "f7:D852",
+  "f7:D88E",
+  "f7:D8B2",
+  "f7:E806",
+  "f7:E16E",
+  "f7:EAC6",
+  "f7:EDE1",
+  "f7:EFE4",
+  "f7:F07C",
+  "f7:C76D",
+  "f7:CA2F",
+  "f7:CA67",
+  "f7:CDC5",
+  "f7:CFC5",
+  "f7:D008",
+  "f7:D015",
+  "f7:D027",
+  "f7:D062",
+  "f7:D0CF",
+  "f7:D395",
+  "f7:D436",
+  "f7:D649",
+  "f7:D674",
+  "f7:D706",
+  "f7:DE3C",
+  "f7:E922",
+  "f7:E925",
+  "f7:E928",
+  "f7:E92E",
+  "f7:E934",
+  "f7:E946",
+  "f7:E94C",
+  "f7:E952",
+  "f7:E95E",
+  "f7:E96A",
+  "f7:E98B",
+  "f7:E98E",
+  "f7:E991",
+  "f7:E997",
+  "f7:E99D",
+  "f7:E9AF",
+  "f7:E9B5",
+  "f7:E9BB",
+  "f7:E9C7",
+  "f7:E9D3",
+  "f7:E9F4",
+  "f7:E9F7",
+  "f7:E9FA",
+  "f7:EA00",
+  "f7:EA06",
+  "f7:EA18",
+  "f7:EA1E",
+  "f7:EA24",
+  "f7:EA30",
+  "f7:EA3C",
+  "f7:EA5D",
+  "f7:EA60",
+  "f7:EA63",
+  "f7:EA69",
+  "f7:EA6F",
+  "f7:EA81",
+  "f7:EA87",
+  "f7:EA8D",
+  "f7:EA99",
+  "f7:EAA5",
+  "f7:EAC3",
+  "f7:EB08",
+  "f7:EB32",
+  "f7:EB58",
+  "f7:EB8A",
+  "f7:EBAC",
+  "f7:ECD7",
+  "f7:ECF3",
+  "f7:ED28",
+  "f7:ED4D",
+  "f7:ED72",
+  "f7:EE1F",
+  "f7:EE55",
+  "f7:EE72",
+  "f7:EE8B",
+  "f7:EEC1",
+  "f7:EF01",
+  "f7:EF2C",
+  "f7:EF54",
+  "f7:CA74",
+  "f7:CA94",
+  "f7:CAB6",
+  "f7:CAC8",
+  "f7:CADA",
+  "f7:CB11",
+  "b3:9000",
+  "b4:9000",
+  "b3:B800",
+  "b3:B000",
+  "b4:9100",
+  "f7:DC2F",
+  "f7:DC45",
+  "f7:DC67",
+  "f7:DC7A",
+  "f7:DC9C",
+  "f7:DCC3",
+  "f7:DCF2",
+  "f7:DD26",
+  "f7:DD59",
+  "f7:DD8A",
+  "f7:DDAA",
+  "b3:9B00",
+  "b3:9800",
+  "b3:B200",
+  "b3:B280",
+  "b3:B300",
+  "b1:BB00",
+  "b1:BD00",
+  "b1:BF00",
+  "b1:9000",
+  "b1:903E",
+  "b1:9E00",
+  "b1:9EB5",
+  "b1:9F5D",
+  "b4:9D00",
+  "b4:9E00",
+  "b4:9F00",
+  "f7:FEED",
+  "b3:9307",
+  "b3:932A",
+  "b3:9376",
+  "b3:9399",
+  "b3:93E5",
+  "b3:9408",
+  "b3:9454",
+  "b3:9477",
+  "b3:94C3",
+  "b3:94E6",
+  "b3:9532",
+  "b3:9555",
+  "b3:95A1",
+  "b3:95C4",
+  "b3:9610",
+  "b3:9633",
+  "b3:967F",
+  "b3:96A2",
+  "b3:96EE",
+  "b3:9711",
+  "b3:9736"
+ ],
+ "ram_vectors": [],
+ "bankat": {},
+ "labels": {
+  "f7:FEEC": "ENTRY_Irq",
+  "f7:FD99": "ENTRY_Nmi",
+  "f7:C002": "ENTRY_Reset",
+  "f7:C028": "TitleRestart",
+  "f7:C0E4": "MenuStart",
+  "f7:C237": "TurnLoop",
+  "f7:C2B1": "PhaseDispatch",
+  "f7:C2D2": "Phase0_Waves",
+  "f7:C2E8": "WaveFrame",
+  "f7:C332": "Phase1_WaitClear",
+  "f7:C363": "Phase2_WarpOut",
+  "f7:C3BC": "Phase3_LevelBoss",
+  "f7:C470": "Phase4_AsteroidField",
+  "f7:C527": "Phase5_FinalBoss",
+  "f7:C5AE": "Phase6_TurnEnd",
+  "f7:C5FF": "SpawnAsteroid",
+  "f7:C6A6": "Obj03_Asteroid",
+  "f7:C744": "Obj0F_BlastInPlace",
+  "f7:C76D": "Hit_Asteroid",
+  "f7:C7AD": "SpawnSaucerRoll",
+  "f7:C7C0": "SpawnSaucer",
+  "f7:C828": "Obj01_Saucer",
+  "f7:CA2F": "Hit_Saucer",
+  "f7:CA4C": "NextCapsule",
+  "f7:CB17": "SetCapsule",
+  "f7:CC5C": "Obj02_Capsule",
+  "f7:CE23": "SpawnBomberRoll",
+  "f7:CE9F": "FindFreeSlotDown",
+  "f7:CEAB": "Obj04_Bomber",
+  "f7:CF59": "BomberDropBomb",
+  "f7:D04F": "Obj07_Bomb",
+  "f7:D062": "Hit_TwoHitEnemy",
+  "f7:D0CF": "Hit_Bomb",
+  "f7:D0F3": "SpawnWandererRoll",
+  "f7:D12B": "InitWanderer",
+  "f7:D1CE": "Obj05_Wanderer",
+  "f7:D285": "FireAimedShot",
+  "f7:D317": "NewWaypoint",
+  "f7:D3A6": "Obj0A_AimedShot",
+  "f7:D46A": "SpawnHomerRoll",
+  "f7:D4F6": "Obj06_Homer",
+  "f7:D5A2": "HomerRetarget",
+  "f7:D5F0": "PlayerFire",
+  "f7:D79A": "FindShotSlot",
+  "f7:D7B6": "Obj16_ShotLeft",
+  "f7:D7F2": "Obj17_ShotUp",
+  "f7:D816": "Obj18_ShotRight",
+  "f7:D852": "Obj19_BigShotLeft",
+  "f7:D88E": "Obj1A_BigShotUp",
+  "f7:D8B2": "Obj1B_BigShotRight",
+  "f7:D9B9": "EnemyShotHitsPlayer",
+  "f7:D9CE": "ShotVsAll",
+  "f7:DA47": "ShotVsBossPieces",
+  "f7:DA92": "BigShotVsAll",
+  "f7:DB0B": "BigShotVsBossPieces",
+  "f7:DB51": "BossPieceHit",
+  "f7:DBB0": "ShotVsFinalBossZones",
+  "f7:DE0E": "DamageDispatch",
+  "f7:DE3D": "RunObjects",
+  "f7:DE5D": "ObjNext",
+  "f7:DEA8": "ObjFree",
+  "f7:DEC0": "Obj00_Player",
+  "f7:DFA5": "Obj09_PlayerBlast",
+  "f7:E121": "Obj0D_Blast",
+  "f7:E207": "Obj10_Boss0",
+  "f7:E2E3": "Obj11_Boss1",
+  "f7:E3B3": "Obj12_Boss2",
+  "f7:E483": "Obj13_Boss3",
+  "f7:E559": "Obj14_Boss4",
+  "f7:E647": "Obj15_Boss5",
+  "f7:E806": "Obj1C_BossShot",
+  "f7:E82E": "BossDead",
+  "f7:E858": "BossTimeout",
+  "f7:E8B6": "InitAimedShot",
+  "f7:E8CB": "AimAtPlayer",
+  "f7:EAC6": "Obj1F_FinalTurretA",
+  "f7:EDE1": "Obj20_FinalTurretB",
+  "f7:F0EE": "CopyBank6To4000",
+  "f7:F115": "HudUpdate",
+  "f7:F3FC": "WarpLettersUpdate",
+  "f7:F47C": "ScoreDigits",
+  "f7:F4FF": "EarthDamage",
+  "f7:F54E": "StartTurn",
+  "f7:F656": "LoadLevelTables",
+  "f7:F688": "FreeAllObjects",
+  "f7:F693": "ShowMessage",
+  "f7:F6B8": "GameScreenInit",
+  "f7:F6E7": "PlayerHit",
+  "f7:F705": "PlayerDies",
+  "f7:F79C": "LoadBoss",
+  "f7:F7AC": "ScoreAddLow",
+  "f7:F7BF": "ScoreAddMid",
+  "f7:F7E1": "ScoreAddHigh",
+  "f7:F7EC": "Random",
+  "f7:F809": "SetSecondsTimer",
+  "f7:F818": "SetDisplayAtVblank",
+  "f7:F827": "DisplayOffAtVblank",
+  "f7:F833": "WaitVblank",
+  "f7:F83C": "WaitNmi",
+  "f7:F84D": "StarsInit",
+  "f7:F8C8": "StarsRespawn",
+  "f7:F903": "EndSequence",
+  "f7:FA4C": "FinalBossScrollIn",
+  "f7:FD53": "ScrollBossRowDown",
+  "f7:FE02": "NmiGame",
+  "f7:FEED": "NmiTitle",
+  "f7:FF23": "NmiPaused",
+  "f7:FF63": "SecondsTimerTick",
+  "b3:9000": "BuildDisplayLists",
+  "b3:902E": "BuildNext",
+  "b3:9B00": "BossLoad",
+  "b3:B000": "StarsStep",
+  "b3:B0E7": "RandomCopy",
+  "b3:B800": "SoundStart",
+  "b4:9000": "SoundTick",
+  "b4:9100": "TitleMusicTick",
+  "b1:9051": "GameDisplaySetup",
+  "b1:B900": "LoadWave",
+  "b1:BB00": "BossExplosion",
+  "b1:BF00": "FinalBossZonesInit"
+ },
+ "ram": {
+  "40": "AsteroidFirstSlot",
+  "41": "AsteroidTick",
+  "42": "FieldKills",
+  "43": "WaveSpawnThreshold",
+  "44": "WaveFloorHomer",
+  "45": "WaveFloorWanderer",
+  "46": "WaveFloorBomber",
+  "47": "WaveIndex",
+  "49": "TimerFrames",
+  "4A": "TimerSeconds",
+  "4B": "TimerFired",
+  "4C": "TimerPeriod",
+  "4D": "CloakFrames",
+  "4E": "CloakSeconds",
+  "4F": "ZoneFill",
+  "5A": "Rnd0",
+  "68": "CapsuleSeqLo",
+  "6A": "CapsuleSeqIndex",
+  "70": "FrameCount",
+  "71": "StarCountdown",
+  "72": "StarPeriod",
+  "73": "BuildGate",
+  "74": "TwoPlayers",
+  "75": "CurPlayer",
+  "76": "CurSlot",
+  "79": "ShotTopSlot",
+  "7A": "AutofirePeriod",
+  "7C": "WeaponLevel",
+  "7E": "ShieldHits",
+  "7F": "Cloaks",
+  "80": "Lives",
+  "82": "EarthShieldLo",
+  "83": "EarthShieldHi",
+  "86": "HudDirty",
+  "87": "ScoreDirty",
+  "8B": "BossStepCount",
+  "8C": "BossScriptIndex",
+  "8D": "BossMove",
+  "8E": "BossDivider",
+  "8F": "BossDividerCount",
+  "90": "BossPiecesLeft",
+  "9B": "StarPos",
+  "B1": "ZoneHeadLen",
+  "B2": "Level",
+  "B4": "Phase",
+  "B7": "BankShadow",
+  "BA": "SoundRequest",
+  "1800": "ObjType",
+  "1820": "ObjX",
+  "1840": "ObjY",
+  "1860": "ObjGfxLo",
+  "1880": "ObjGfxPage",
+  "18A0": "ObjPalWidth",
+  "18C0": "ObjBoxW",
+  "18E0": "ObjBoxH",
+  "1900": "ObjA",
+  "1920": "ObjB",
+  "1940": "ObjC",
+  "1960": "ObjD",
+  "1980": "ObjE",
+  "19A0": "ObjF",
+  "19C0": "ObjG",
+  "19E0": "ObjH",
+  "1A50": "NmiVecLo",
+  "1A51": "NmiVecHi",
+  "1A52": "WarpLetters",
+  "1A5C": "Score",
+  "1A65": "CapsuleKind",
+  "1A66": "BossId",
+  "1A67": "Voice0Off",
+  "1A68": "Voice1Off",
+  "1A74": "NoDeath",
+  "1A75": "BossFirePiece",
+  "1A76": "BossLeaving",
+  "1A94": "Difficulty",
+  "1A99": "AttractFlag",
+  "1A9F": "FinalBossState",
+  "1AA0": "ZoneHp",
+  "1AAB": "ZoneRight",
+  "1AB6": "ZoneWidth",
+  "1AC1": "ZoneBottom",
+  "1AF6": "WeaponCap",
+  "1B00": "StarMap",
+  "1F00": "DLL"
+ },
+ "comments": {
+  "f7:C2B1": "Per-player phase byte ram_00B4,X indexes the RTS table at C2C4: 0 waves, 1 wait for slots $12-$1F to empty, 2 warp out, 3 level boss, 4 asteroid field, 5 final boss, 6 end of turn. (code; phases 0-5 seen live in work/runs/long1 and final)",
+  "f7:C2E8": "One wave frame: three spawn rolls (D0F3, D46A, CE23), the saucer roll, every $A0 passes an asteroid, then HUD, objects and the frame wait. The wave index ram_0047 steps when the NMI's seconds timer fires (ram_004B), every 20 s. (live: 1200 frames a step)",
+  "f7:D46A": "Spawn roll, family 'homer' (type 6): only while the player is alive, only if Random >= WaveSpawnThreshold ($43), and only into a free slot from WaveFloorHomer ($44) up to $1F. The floor is the cap on how many can be alive. (live: poking $44=$14 and $43=$F0 gave 12 alive, slots $14-$1F)",
+  "f7:D9CE": "Player shot against everything: Y runs $1F down to 1 and a slot is a target when its type is 1-7 (type < 8). Box test with the target's own ObjBoxW/ObjBoxH. No early outs beyond the type test. (code)",
+  "f7:DA47": "With a level boss up (BossId >= 0) a shot tests only the boss's pieces, from slot dat_E8A5[BossId] to $1F: box = piece position + (ObjBoxW, ObjBoxH) offsets with sizes in ObjB/ObjA, hit points in ObjC ($FF = not a target). (code; hit points seen live only on the final boss)",
+  "f7:DBB0": "Final boss: eleven hit zones in four arrays at $1AA0 (hit points, negative = locked or dead), $1AAB (x), $1AB6 (width), $1AC1 (bottom y). A zone going negative runs its own handler from the table at DC19, which pokes the wrecked art into the zone lists' fixed heads and unlocks the next zone. (live: hit points count down, ram_0090 9->7, work/runs/final)",
+  "f7:E207": "Level boss brain. All pieces carry this type, but the handler sets CurSlot to the boss's first slot so the object loop skips the other pieces: it runs once a pass. One piece a pass may fire (round robin in ram_1A75); movement comes from a (count, move) script and a divider indexed by pieces left (dat_E8AB). (code)",
+  "f7:E858": "Boss time limit: when the 70 s timer fires the boss leaves downward, and reaching the bottom costs the Earth shield $4000 (index 6 of dat_F52F). (code; a timed-out boss seen live in work/runs/long1, 4215 frames)",
+  "f7:FD99": "NMI. Reset and Select are polled here and rewrite the stacked return address to restart the game; then JMP (ram_1A50): FE02 in play, FEED on the title and end screens, FF23 while paused.",
+  "f7:FE02": "The one DLI of the game screen, on the HUD text zone (raster 227 in MAME): CTRL to 320 mode for the text, then the seconds timers, the sound start (bank 3), the sound tick (bank 4), the display-list build (bank 3), the stars, and CTRL back to 160 mode. It switches banks three times and restores ram_00B7 at the end. Not usable under BankSet as is.",
+  "b3:9000": "Display-list build, run from the NMI every frame. Fill pointers for the 11 zones are reset to ZoneHeadLen; each live object is dispatched through a 256-entry table on its Y to one of 24 unrolled placers (one or two zones, the zone's list address and fill byte hard-coded). ram_0073 is taken to 0 for the duration so a second NMI skips it. (live: 25-54 raster lines, about a line an object, work/runs/fp1)",
+  "b3:B000": "Stars: 18 characters in a 20-column map at $1B00, one star a column. A step adds 2 to the star's character (the same dot one line lower); at the end of its set the cell is blanked and the star moves 20 bytes on (the next zone). Run every StarPeriod frames from the NMI.",
+  "b1:B900": "Wave record: row = dat1_B948[Level] + WaveIndex into four parallel tables: threshold (B94F), then the three slot floors (B9B1, BA13, BA75); a non-zero floor gets +1 on Easy. (live: values match in work/runs/long1)"
+ },
+ "headers": {},
+ "blocks": [
+  {
+   "loc": "b1:B948",
+   "len": 7,
+   "name": "WaveRowBase",
+   "note": "level -> first row (14 rows a level)"
+  },
+  {
+   "loc": "b1:B94F",
+   "len": 98,
+   "name": "WaveThreshold",
+   "note": "7 levels x 14 waves: spawn when Random >= this"
+  },
+  {
+   "loc": "b1:B9B1",
+   "len": 98,
+   "name": "WaveFloorHomerTbl",
+   "note": "first slot for type 6 (0 = none)"
+  },
+  {
+   "loc": "b1:BA13",
+   "len": 98,
+   "name": "WaveFloorWandererTbl",
+   "note": "first slot for type 5"
+  },
+  {
+   "loc": "b1:BA75",
+   "len": 98,
+   "name": "WaveFloorBomberTbl",
+   "note": "first slot for type 4"
+  },
+  {
+   "loc": "b1:9656",
+   "len": 131,
+   "name": "DllTemplates",
+   "note": "two DLL images (1 player at +0, 2 players at +$40), each ending $FF, copied to $1F00"
+  },
+  {
+   "loc": "b1:96D9",
+   "len": 256,
+   "name": "ZoneHeads",
+   "note": "16 bytes per list: star map header (indirect, 18 chars) and a dummy 5-byte header that sets write mode 1; then the HUD lists"
+  },
+  {
+   "loc": "b1:BF2A",
+   "len": 44,
+   "name": "FinalBossZones",
+   "note": "11 x hit points, x, width, bottom y"
+  },
+  {
+   "loc": "b3:906D",
+   "len": 512,
+   "name": "PlacerByY",
+   "note": "hi then lo bytes (target-1) of the placer for each Y"
+  },
+  {
+   "loc": "b3:9B5A",
+   "len": 24,
+   "name": "BossDefs",
+   "note": "per boss: bank of its art, piece count, pointer to 14 rows of piece-count bytes"
+  },
+  {
+   "loc": "b3:B877",
+   "len": 34,
+   "name": "SoundIdToStreams",
+   "note": "per id: stream for voice 0, stream for voice 1 ($FF = leave)"
+  },
+  {
+   "loc": "f7:CB30",
+   "len": 16,
+   "name": "CapsuleSeqPtrs",
+   "note": "per level, pointer to a 40-byte capsule order"
+  },
+  {
+   "loc": "f7:CB40",
+   "len": 280,
+   "name": "CapsuleSeqs",
+   "note": "7 x 40 capsule kinds 0-5"
+  },
+  {
+   "loc": "f7:E8A5",
+   "len": 6,
+   "name": "BossFirstSlot"
+  },
+  {
+   "loc": "f7:E8AB",
+   "len": 11,
+   "name": "BossDividerByPieces"
+  },
+  {
+   "loc": "f7:F52F",
+   "len": 8,
+   "name": "EarthDamageTbl",
+   "note": "16-bit amounts: $0100, $012C, $0200, $4000"
+  },
+  {
+   "loc": "f7:F64F",
+   "len": 7,
+   "name": "WeaponCapByLevel"
+  }
+ ],
+ "notes": {
+  "f7": "ps.a78\nmapper supergame, 128 KB, NTSC\nno POKEY declared; audio is the TIA's two voices\n\nVectors: IRQ $FEEC  NMI $FD99  RESET $C002\n\nWritten by init.py. Everything here is read from the cartridge; the\njudgement calls are yours to add."
+ },
+ "banksw": {
+  "f7:FE45": [
+   3
+  ],
+  "f7:FE4D": [
+   4
+  ],
+  "f7:FE55": [
+   3
+  ],
+  "f7:FEB0": [
+   1
+  ],
+  "f7:C015": [
+   4
+  ],
+  "f7:C022": [
+   3
+  ],
+  "f7:C036": [
+   4
+  ],
+  "f7:C04D": [
+   1
+  ],
+  "f7:C057": [
+   0
+  ],
+  "f7:C0F5": [
+   4
+  ],
+  "f7:C11C": [
+   1
+  ],
+  "f7:C217": [
+   1
+  ],
+  "f7:C231": [
+   1
+  ],
+  "f7:C320": [
+   1
+  ],
+  "f7:F0F2": [
+   6
+  ],
+  "f7:F57A": [
+   1
+  ],
+  "f7:F697": [
+   3
+  ],
+  "f7:F6A1": [
+   1
+  ],
+  "f7:F6C2": [
+   1
+  ],
+  "f7:F786": [
+   3
+  ],
+  "f7:F90A": [
+   3
+  ],
+  "f7:F935": [
+   1
+  ],
+  "f7:F93F": [
+   2
+  ],
+  "f7:FEF6": [
+   3
+  ],
+  "f7:FEFE": [
+   4
+  ],
+  "f7:FF06": [
+   0,
+   2
+  ]
+ },
+ "_dynamic": {
+  "exec_all.log": {
+   "observed_not_proven": true,
+   "entries": [
+    "f7:FE02",
+    "b3:926D",
+    "f7:C2D2",
+    "f7:C2E8",
+    "f7:C328",
+    "f7:C32F",
+    "f7:C5FF",
+    "f7:C6A6",
+    "f7:C6E7",
+    "f7:C723",
+    "f7:C741",
+    "f7:C7AD",
+    "f7:C7FA",
+    "f7:C828",
+    "f7:C842",
+    "f7:C880",
+    "f7:C8C4",
+    "f7:C8E0",
+    "f7:C95F",
+    "f7:C99F",
+    "f7:C9C6",
+    "f7:C9EF",
+    "f7:CA03",
+    "f7:CE23",
+    "f7:CE9F",
+    "f7:D0F3",
+    "f7:D10D",
+    "f7:D46A",
+    "f7:D484",
+    "f7:D4F6",
+    "f7:D54A",
+    "f7:D56C",
+    "f7:D58A",
+    "f7:D61E",
+    "f7:D79A",
+    "f7:D7AC",
+    "f7:D7F2",
+    "f7:D97C",
+    "f7:D996",
+    "f7:D9B3",
+    "f7:D9DB",
+    "f7:DA20",
+    "f7:DA2D",
+    "f7:DE5D",
+    "f7:DEA8",
+    "f7:DEC0",
+    "f7:DEE3",
+    "f7:DEEE",
+    "f7:DEFE",
+    "f7:DF0A",
+    "f7:DF1C",
+    "f7:DF2E",
+    "f7:DF4D",
+    "f7:DF5F",
+    "f7:DFA5",
+    "f7:E121",
+    "f7:E204",
+    "f7:F4FF",
+    "f7:F525",
+    "f7:F6E7",
+    "f7:F705",
+    "b3:9298",
+    "b3:92BB"
+   ],
+   "banksw": {
+    "f7:FE45": [
+     3
+    ],
+    "f7:FE4D": [
+     4
+    ],
+    "f7:FE55": [
+     3
+    ],
+    "f7:FEB0": [
+     1
+    ]
+   },
+   "executed": 1846,
+   "still_unreached": 473
+  },
+  "xt_merged.log": {
+   "observed_not_proven": true,
+   "entries": [
+    "f7:FEED",
+    "b3:9307",
+    "b3:932A",
+    "b3:9376"
+   ],
+   "banksw": {
+    "f7:C015": [
+     4
+    ],
+    "f7:C022": [
+     3
+    ],
+    "f7:C036": [
+     4
+    ],
+    "f7:C04D": [
+     1
+    ],
+    "f7:C057": [
+     0
+    ],
+    "f7:C0F5": [
+     4
+    ],
+    "f7:C11C": [
+     1
+    ],
+    "f7:C217": [
+     1
+    ],
+    "f7:C231": [
+     1
+    ],
+    "f7:C320": [
+     1
+    ],
+    "f7:F0F2": [
+     6
+    ],
+    "f7:F57A": [
+     1
+    ],
+    "f7:F697": [
+     3
+    ],
+    "f7:F6A1": [
+     1
+    ],
+    "f7:F6C2": [
+     1
+    ],
+    "f7:F786": [
+     3
+    ],
+    "f7:F90A": [
+     3
+    ],
+    "f7:F935": [
+     1
+    ],
+    "f7:F93F": [
+     2
+    ],
+    "f7:FEF6": [
+     3
+    ],
+    "f7:FEFE": [
+     4
+    ],
+    "f7:FF06": [
+     0,
+     2
+    ]
+   },
+   "executed": 3995,
+   "still_unreached": 409
+  }
+ }
+}
